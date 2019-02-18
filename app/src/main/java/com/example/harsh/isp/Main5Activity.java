@@ -1,26 +1,19 @@
 package com.example.harsh.isp;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Main5Activity extends AppCompatActivity {
 EditText user , pass, accno;
@@ -45,58 +38,19 @@ String email , password , plan ;
                                      public void onClick(View view) {
 
                                          mpassword = FirebaseDatabase.getInstance().getReference().child("users").child(accno.getText().toString());
-                                         mpassword.addChildEventListener(new ChildEventListener() {
-
-
+                                         mpassword.addListenerForSingleValueEvent(new ValueEventListener() {
                                              @Override
-                                             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                                                    if(i[0]==0) {
-                                                        email = dataSnapshot.getValue().toString();
-
-                                                        i[0]++;
-                                                    }
-                                                    else if(i[0]== 1)
-                                                    {
-                                                        password =dataSnapshot.getValue().toString();
-
-                                                        i[0]++;
-                                                    } else if (i[0] == 2
-                                                            ) {
-                                                        plan = dataSnapshot.getValue().toString();
-
-                                                    }
-                                                 final Handler handler = new Handler();
-                                                 handler.postDelayed(new Runnable() {
-                                                     @Override
-                                                     public void run() {
-                                                     check();
-                                                     }
-                                                 }, 100);
-
-
-                                                }
-
-                                             @Override
-                                             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                                             }
-
-                                             @Override
-                                             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                                             }
-
-                                             @Override
-                                             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
+                                             public void onDataChange(DataSnapshot dataSnapshot) {
+                                                 password = dataSnapshot.child("password").getValue().toString();
+                                                 plan = dataSnapshot.child("plan").getValue().toString();
+                                                 email = dataSnapshot.child("email").getValue().toString();
+                                                 check();
                                              }
 
                                              @Override
                                              public void onCancelled(DatabaseError databaseError) {
 
                                              }
-
                                          });
 
                                      }

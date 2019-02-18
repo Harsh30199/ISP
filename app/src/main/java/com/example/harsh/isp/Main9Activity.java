@@ -1,23 +1,15 @@
 package com.example.harsh.isp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -27,8 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class Main9Activity extends AppCompatActivity {
 
@@ -36,7 +26,7 @@ public class Main9Activity extends AppCompatActivity {
     DatabaseReference dref;
     ListView plans;
     ArrayList<String> list = new ArrayList<>();
-
+    String speed, cost, data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +75,47 @@ public class Main9Activity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        plans.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DatabaseReference mDatabase;
+
+                final String name;
+
+                name = parent.getItemAtPosition(position).toString();
+
+                mDatabase = FirebaseDatabase.getInstance().getReference().child("plans").child(name);
+                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        speed = dataSnapshot.child("speed").getValue().toString();
+
+                        cost = dataSnapshot.child("cost").getValue().toString();
+
+                        data = dataSnapshot.child("data").getValue().toString();
+                        AlertDialog.Builder alert = new AlertDialog.Builder(Main9Activity.this);
+                        alert.setTitle("Plan Details");
+                        alert.setMessage("SPEED : " + speed + " MBPS \nCOST   : RS." + cost + "\nDATA   : " + data + " GB");
+                        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+
+                        alert.show();
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
             }
         });
     }

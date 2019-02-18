@@ -9,57 +9,68 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/holo_blue_bright"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/textView4"
             android:layout_width="347dp"
             android:layout_height="65dp"
-            android:layout_marginEnd="18dp"
             android:layout_marginStart="19dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="18dp"
             android:text="CURRENT PLANS"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/black"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
             android:id="@+id/planlist"
             android:layout_width="368dp"
             android:layout_height="253dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/button6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
         <Button
             android:id="@+id/button6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="148dp"
             android:layout_marginStart="148dp"
+            android:layout_marginEnd="148dp"
             android:text="ADD PLAN"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.333"
             app:layout_constraintStart_toStartOf="parent"
+            android:background="@android:color/black"
+            android:textColor="@android:color/white"
+
             tools:layout_editor_absoluteY="350dp" />
 
         <Button
             android:id="@+id/button7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="148dp"
             android:layout_marginStart="148dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="148dp"
             android:text="DELETE PLAN"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.48"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button6" />
+            android:background="@android:color/black"
+            android:textColor="@android:color/white"
 
+            app:layout_constraintTop_toBottomOf="@+id/button6" />
 
 
     </LinearLayout>

@@ -1,26 +1,26 @@
 package com.example.harsh.isp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Main2Activity extends AppCompatActivity {
 Button pay ;
 Button change ;
 TextView plan ;
-String accno , cost;
+    String accno, cost, data, speed;
 int i = 0 ;
     private DatabaseReference mDatabase;
     @Override
@@ -38,6 +38,49 @@ int i = 0 ;
     }
        changebutton();
        paybutton();
+        planviewer();
+    }
+
+    void planviewer() {
+        plan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference mDatabase;
+
+                final String name;
+
+                name = plan.getText().toString();
+
+                mDatabase = FirebaseDatabase.getInstance().getReference().child("plans").child(name);
+                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        speed = dataSnapshot.child("speed").getValue().toString();
+
+                        cost = dataSnapshot.child("cost").getValue().toString();
+
+                        data = dataSnapshot.child("data").getValue().toString();
+                        AlertDialog.Builder alert = new AlertDialog.Builder(Main2Activity.this);
+                        alert.setTitle("Plan Details");
+                        alert.setMessage("SPEED : " + speed + " MBPS \nCOST   : RS." + cost + "\nDATA   : " + data + " GB");
+                        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+
+                        alert.show();
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
     }
     void paybutton()
     {
