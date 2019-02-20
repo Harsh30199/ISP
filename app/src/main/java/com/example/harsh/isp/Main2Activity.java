@@ -20,7 +20,7 @@ public class Main2Activity extends AppCompatActivity {
 Button pay ;
 Button change ;
 TextView plan ;
-    String accno, cost, data, speed;
+    String accno, cost, data, speed, plan2;
 int i = 0 ;
     private DatabaseReference mDatabase;
     @Override
@@ -35,7 +35,10 @@ int i = 0 ;
         if (b != null)
         {       plan.setText(b.getString("plan"));
                 accno = b.getString("accno");
-    }
+            plan2 = b.getString("plan");
+        } else {
+            plan.setText(plan2);
+        }
        changebutton();
        paybutton();
         planviewer();

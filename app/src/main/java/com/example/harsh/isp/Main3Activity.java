@@ -3,9 +3,9 @@ package com.example.harsh.isp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,12 +43,12 @@ String cost;
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(Main3Activity.this, "Thank You For Your Payment", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(Main3Activity.this,Main6Activity.class));
+                                startActivity(new Intent(Main3Activity.this, Main2Activity.class));
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                startActivity(new Intent(Main3Activity.this,Main6Activity.class));
+
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)

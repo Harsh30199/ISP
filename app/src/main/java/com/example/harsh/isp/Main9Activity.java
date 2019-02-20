@@ -91,7 +91,6 @@ public class Main9Activity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         speed = dataSnapshot.child("speed").getValue().toString();
-
                         cost = dataSnapshot.child("cost").getValue().toString();
 
                         data = dataSnapshot.child("data").getValue().toString();

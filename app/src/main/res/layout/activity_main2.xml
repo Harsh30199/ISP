@@ -4,29 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright"
     tools:context="com.example.harsh.isp.Main2Activity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="127dp"
         android:layout_height="27dp"
-        android:layout_marginBottom="435dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="49dp"
+        android:layout_marginBottom="435dp"
         android:text="Current Plan"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="436dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="49dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="436dp"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
@@ -48,6 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:text="CHANGE PLAN"
+            android:background="@android:color/black"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.427"
@@ -62,6 +67,8 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="75dp"
             android:text="MAKE PAYMENT"
+            android:background="@android:color/black"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.447"

@@ -1,83 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright"
+    android:orientation="vertical"
     tools:context="com.example.harsh.isp.Main3Activity">
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="122dp"
         android:layout_marginStart="47dp"
         android:layout_marginTop="42dp"
-        android:ems="12"
+        android:layout_marginEnd="122dp"
+
         android:hint="Credit card number"
         android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="344dp"
-        android:layout_marginEnd="122dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="34dp"
-        android:ems="10"
-        android:hint="expiry date"
-        android:inputType="date"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        android:maxLength="16" />
 
     <EditText
         android:id="@+id/editText4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="270dp"
-        android:layout_marginEnd="122dp"
         android:layout_marginStart="47dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="122dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Name on card"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editText6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="122dp"
         android:layout_marginStart="47dp"
-        android:layout_marginTop="32dp"
-        android:ems="3"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="122dp"
         android:hint="CVV"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        android:inputType="numberPassword"
+        android:maxLength="3" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="122dp"
+        android:ems="10"
+        android:hint="expiry date"
+        android:inputType="date" />
+
+
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="102dp"
-        android:layout_marginEnd="182dp"
         android:layout_marginStart="114dp"
         android:layout_marginTop="41dp"
+        android:layout_marginEnd="182dp"
+        android:layout_marginBottom="102dp"
+        android:background="@android:color/black"
         android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+        android:textColor="@android:color/white" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
