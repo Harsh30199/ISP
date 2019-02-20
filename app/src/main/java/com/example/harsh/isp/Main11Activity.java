@@ -1,11 +1,10 @@
 package com.example.harsh.isp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.Patterns;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,19 +13,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,15 +46,39 @@ String selected_plan;
             public void onClick(View view) {
 
                 mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("users").child(accno.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            AlertDialog.Builder alert = new AlertDialog.Builder(Main11Activity.this);
+                            alert.setTitle("Duplicate Account No Found");
+                            alert.setMessage("Please enter unique Account No");
+                            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                }
+                            });
 
-                mDatabase.child("users").child(accno.getText().toString()).child("plan").setValue(selected_plan);
-                mDatabase.child("users").child(accno.getText().toString()).child("email").setValue(editTextEmail.getText().toString());
-                mDatabase.child("users").child(accno.getText().toString()).child("password").setValue(editTextPass.getText().toString());
+                            alert.show();
 
-                Intent i = new Intent(Main11Activity.this,Main2Activity.class);
-                i.putExtra("plan",selected_plan);
-                i.putExtra("accno",accno.getText().toString());
-                startActivity(i);
+                        } else {
+                            mDatabase.child("users").child(accno.getText().toString()).child("plan").setValue(selected_plan);
+                            mDatabase.child("users").child(accno.getText().toString()).child("email").setValue(editTextEmail.getText().toString());
+                            mDatabase.child("users").child(accno.getText().toString()).child("password").setValue(editTextPass.getText().toString());
+
+                            Intent i = new Intent(Main11Activity.this, Main2Activity.class);
+                            i.putExtra("plan", selected_plan);
+                            i.putExtra("accno", accno.getText().toString());
+                            startActivity(i);
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });

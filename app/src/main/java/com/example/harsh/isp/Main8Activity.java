@@ -65,7 +65,7 @@ Button submit ;
 
                             AlertDialog.Builder alert = new AlertDialog.Builder(Main8Activity.this);
                             alert.setTitle("PLAN WITH SAME CONFIGURATION EXISTS");
-                            alert.setMessage("Click Cancel to change plan\n Ok to change the plan");
+                            alert.setMessage("Click Cancel to go back\n Ok to change the plan");
                             alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
